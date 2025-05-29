@@ -1,4 +1,4 @@
-package org.gnius.safejson;
+package net.gnius.safejson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
