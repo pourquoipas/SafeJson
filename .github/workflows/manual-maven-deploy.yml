@@ -25,5 +25,15 @@ jobs:
           server-username: ${{ github.actor }} # Nome utente GitHub di chi ha avviato l'azione
           server-password: ${{ secrets.GITHUB_TOKEN }} # Il token fornito da GitHub Actions
 
+      - name: Display Maven settings for debug
+        run: |
+          echo ">>> Displaying ~/.m2/settings.xml <<<"
+          if [ -f ~/.m2/settings.xml ]; then
+            cat ~/.m2/settings.xml
+          else
+            echo "File ~/.m2/settings.xml not found."
+          fi
+          echo ">>> End of settings.xml <<<"
+
       - name: Deploy package to GitHub Packages
         run: mvn deploy -B # -B per "batch mode", evita output interattivi e usa le configurazioni
