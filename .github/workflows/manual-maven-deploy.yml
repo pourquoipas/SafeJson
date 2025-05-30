@@ -22,8 +22,8 @@ jobs:
           distribution: 'temurin' # Una distribuzione JDK popolare e affidabile
           # Configura Maven per usare GITHUB_TOKEN per l'autenticazione con GitHub Packages
           server-id: github # Deve corrispondere all'<id> in distributionManagement del pom.xml
-          server-username: ${{ github.actor }} # Nome utente GitHub di chi ha avviato l'azione
-          server-password: ${{ secrets.GITHUB_TOKEN }} # Il token fornito da GitHub Actions
+          # server-username: ${{ github.actor }} # Nome utente GitHub di chi ha avviato l'azione
+          # server-password: ${{ secrets.GITHUB_TOKEN }} # Il token fornito da GitHub Actions
 
       - name: Display Maven settings for debug
         run: |
