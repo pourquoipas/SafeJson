@@ -1,0 +1,29 @@
+name: Manual Maven Package Deployment
+
+on:
+  workflow_dispatch: # Permette l'avvio manuale dalla scheda "Actions" del repository
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # Usa l'ultima versione stabile di Ubuntu fornita da GitHub
+
+    permissions:
+      contents: read    # Permesso per fare il checkout del codice
+      packages: write   # Permesso per pubblicare package su GitHub Packages
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4 # Azione per scaricare il codice del tuo repository
+
+      - name: Set up JDK (Java 8)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8' # Assicurati che corrisponda a <maven.compiler.source> nel pom.xml
+          distribution: 'temurin' # Una distribuzione JDK popolare e affidabile
+          # Configura Maven per usare GITHUB_TOKEN per l'autenticazione con GitHub Packages
+          server-id: github # Deve corrispondere all'<id> in distributionManagement del pom.xml
+          server-username: ${{ github.actor }} # Nome utente GitHub di chi ha avviato l'azione
+          server-password: ${{ secrets.GITHUB_TOKEN }} # Il token fornito da GitHub Actions
+
+      - name: Deploy package to GitHub Packages
+        run: mvn deploy -B # -B per "batch mode", evita output interattivi e usa le configurazioni
