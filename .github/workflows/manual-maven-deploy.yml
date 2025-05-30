@@ -11,6 +11,11 @@ jobs:
       contents: read    # Permesso per fare il checkout del codice
       packages: write   # Permesso per pubblicare package su GitHub Packages
 
+    # Definiamo le variabili d'ambiente a livello di job
+    # GITHUB_ACTOR è già disponibile automaticamente
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Rendiamo il token segreto disponibile come variabile d'ambiente
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4 # Azione per scaricare il codice del tuo repository
@@ -34,6 +39,9 @@ jobs:
             echo "File ~/.m2/settings.xml not found."
           fi
           echo ">>> End of settings.xml <<<"
+          echo ">>> Verifying environment variables <<<"
+          echo "GITHUB_ACTOR is: $GITHUB_ACTOR" # Verifica che GITHUB_ACTOR sia popolata
+          echo "GITHUB_TOKEN is set (length): ${#GITHUB_TOKEN}" # Verifica se GITHUB_TOKEN è impostata (mostra la lunghezza per non loggare il token)
 
       - name: Deploy package to GitHub Packages
         run: mvn deploy -B # -B per "batch mode", evita output interattivi e usa le configurazioni
