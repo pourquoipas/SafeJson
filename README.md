@@ -132,3 +132,12 @@ Output:
 */
 ```
 
+## Contributing
+
+Contributions are welcome! Please feel free to submit a pull request or open an issue for bugs, feature requests, or improvements.
+
+---
+
+## License
+
+This project is licensed under the CC BY-NC-SA 4.0 License. See the `LICENSE` file for details.
