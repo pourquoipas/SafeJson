@@ -1,3 +1,6 @@
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/pourquoipas/SafeJson)
+[![License: MIT](https://img.shields.io/badge/License-CC_BY--NC--SA--4.0-green)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+
 ## SafeJson: Null-Safe JSON Navigation for Java
 
 `SafeJson` is a Java utility class designed to simplify working with JSON objects and arrays, particularly when dealing with potentially missing keys or null values. It wraps the `org.json.JSONObject` and `org.json.JSONArray` classes to provide a fluent, null-safe API for navigating JSON structures and retrieving typed values.
